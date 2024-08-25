@@ -1,47 +1,60 @@
-# Astro Starter Kit: Minimal
+# *Osiris Project*
 
-```sh
-npm create astro@latest -- --template minimal
-```
+## **Descripción:**
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+Este es el frontend para un reproductor de video sencillo y fácil de usar, diseñado para ofrecer a los usuarios una experiencia visualmente atractiva y fácil de navegar. Permite a los usuarios reproducir videos, gestionar series y capítulos, y manejar listas personalizadas.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+![osiris](https://i.ibb.co/F3fdvs5/Mac-Book-Pro-16-2-2.png)
 
-## 🚀 Project Structure
+## **Tecnologías Utilizadas:**
 
-Inside of your Astro project, you'll see the following folders and files:
+- **Framework:** Astro
+- **Lenguajes:** HTML, CSS, JavaScript
+- **Comunicación con API:** Axios o Fetch para llamadas a la API
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## **Requerimientos del Sistema:**
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- Node.js 14.x o superior
+- NPM 6.x o superior
+- Editor de texto o IDE (recomendado: VS Code)
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## **Instalación:**
+1. **Clonar el repositorio:**
+   ```bash
+   git clone https://github.com/arimakey/osiris-frontend.git
+   cd osiris-frontend
+   ```
 
-Any static assets, like images, can be placed in the `public/` directory.
+2. **Instalar dependencias:**
+   ```bash
+   npm install
+   ```
 
-## 🧞 Commands
+3. **Iniciar el servidor de desarrollo:**
+   ```bash
+   npm run dev
+   ```
 
-All commands are run from the root of the project, from a terminal:
+4. **Construir para producción:**
+   ```bash
+   npm run build
+   ```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## **Funcionalidades Principales:**
+- **Reproducción de Videos:**
+  - Reproducción fluida de videos con controles personalizados.
+  - Continuar viendo desde el minuto exacto donde se dejó.
+- **Gestión de Contenido:**
+  - Interfaz intuitiva para organizar videos en secciones y categorías.
+  - Previsualización de videos antes de subirlos.
+- **Listas Personalizadas:**
+  - Manejo de listas de videos "por ver" y videos "gustados".
 
-## 👀 Want to learn more?
+## **Usabilidad:**
+- **Diseño Responsivo:** Compatible con dispositivos móviles y de escritorio.
+- **Interfaz Intuitiva:** Navegación fácil y rápida entre las secciones de la aplicación.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## **Seguridad:**
+- **Autenticación de Usuario:** Integración con OAuth2 para Google y Facebook.
+- **Protección de Datos:** Cumplimiento con las mejores prácticas de seguridad.
+
