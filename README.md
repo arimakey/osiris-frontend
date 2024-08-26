@@ -2,7 +2,7 @@
 
 Este repositorio contiene el frontend para una plataforma de streaming, desarrollada utilizando Django Rest Framework. El objetivo de este proyecto es proporcionar una API robusta para la gestión y reproducción de contenido multimedia, permitiendo a los usuarios disfrutar de una experiencia personalizada y fluida. Puedes revisar el backend [aqui](https://github.com/arimakey/osiris-backend).
 
-![osiris](https://i.ibb.co/vh8SnCQ/Mac-Book-Pro-16-5-2.png)
+![osiris](https://i.ibb.co/VxKHQMc/Mac-Book-Pro-16-5-2.png)
 
 ## **Tecnologías Utilizadas:**
 
