@@ -1,0 +1,10 @@
+---
+    import HeaderItem from './HeaderItem.astro'
+    const { movies } = Astro.props
+---
+
+<div class="grid grid-cols-3">
+{
+        movies.map((movie) => (<HeaderItem title={movie.titulo} image={movie.img} />))
+}
+</div>
