@@ -1,0 +1,29 @@
+---
+const { title, image, trailer, duration, link } = Astro.props;
+---
+
+<a href={link} class="relative p-1 w-full h-80 group block" target="_blank" rel="noopener noreferrer">
+    <img 
+      src={image}
+      alt="Not Found" 
+      class="block w-full h-full object-cover rounded-lg transition-opacity duration-300 group-hover:opacity-0"
+    />
+    
+    <div class="absolute inset-0 p-1">
+      <video 
+        src={trailer} 
+        preload="auto"
+        class="w-full h-full object-cover rounded-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100"  
+        loop
+        muted
+      ></video>
+    </div>
+    
+    <div class="absolute bottom-0 left-0 w-full flex flex-row p-4">
+      <h1 class="text-white text-3xl">{title}</h1>
+      <p class="text-white text-xl ml-4 mt-2">{duration}</p>
+    </div>
+</a>
+  
+
+

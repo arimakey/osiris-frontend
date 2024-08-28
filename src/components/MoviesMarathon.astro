@@ -1,0 +1,43 @@
+---
+    import MoviesItems from './MoviesItems.astro'
+    const { movies } = Astro.props
+---
+
+<div class="p-2">
+    <h1 class="text-white text-3xl mb-4 p-1">Películas para maratonear</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-2">
+    {
+        movies.map((movie) => (
+            <MoviesItems
+                title={movie.title} 
+                image={movie.img} 
+                duration={movie.duration} 
+                trailer={movie.trailer} 
+                link={movie.url} 
+            />
+        ))
+    }
+    </div>
+</div>
+
+
+<script>
+    // Selecciona todos los contenedores de video
+    const containers = document.querySelectorAll('.group');
+
+    containers.forEach(container => {
+        const video = container.querySelector('video');
+
+        container.addEventListener('mouseover', () => {
+            video.play();
+            video.muted = false;
+        });
+
+        container.addEventListener('mouseleave', () => {
+            video.currentTime = 0; 
+            video.pause();
+            
+        });
+    });
+</script>
