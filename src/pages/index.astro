@@ -2,9 +2,12 @@
 	// Aca va los imports, codigo javascript
 	import Layout from '../layouts/Layout.astro'
 	import Header from '../components/Header.astro'
-	import movies from '../data/movies.js'
+	import movies_header from '../data/movies_header.js'
+	import Navbar from '../components/Navbar.astro'
+	import movies from '../data/movies'
 ---
 
 <Layout>
-	<Header movies={movies}/>
+	<Navbar/>
+	<Header movies={movies_header}/>
 </Layout>
