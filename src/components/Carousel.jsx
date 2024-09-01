@@ -44,7 +44,7 @@ export default function Carousel({ movies }) {
 
   return (
     <div className="relative group">
-      <div ref={carouselRef} className={`flex overflow-x-hidden overflow-y-hidden xl:overflow-y-visible py-1 xl:py-4 ${extraPadding ? 'xl:px-9' : ''}`}>
+      <div ref={carouselRef} className={`flex overflow-x-scroll overflow-y-hidden xl:overflow-y-visible py-1 xl:py-4 [&::-webkit-scrollbar]:hidden ${extraPadding ? 'xl:px-9' : ''}`} >
         {movies.map((movie) => (
           <div key={movie.id} className=" min-w-[125px] md:min-w-[175px] xl:min-w-[200px] mx-2 transform transition-transform duration-300 ease-in-out hover:scale-105">
             <img src={movie.img} alt={movie.title} className="rounded-lg w-full h-full transform transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer" />
