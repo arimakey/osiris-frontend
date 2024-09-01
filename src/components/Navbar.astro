@@ -1,40 +1,57 @@
 ---
-    const usuario = {
-        name: 'Jose',
-        img: 'https://i.pinimg.com/736x/b9/26/bf/b926bf459ffab6307f5708b402095a27.jpg',
-    };
+const usuario = {
+    name: "Jose",
+    img: "https://i.pinimg.com/736x/b9/26/bf/b926bf459ffab6307f5708b402095a27.jpg",
+};
 ---
-<div id="navbar" class="fixed top-0 left-0 w-full flex justify-between text-white px-8 py-4 items-center transition-colors duration-500 z-10">
+
+<div
+    id="navbar"
+    class="fixed top-0 left-0 w-full flex justify-between text-white px-8 py-4 items-center transition-colors duration-500 z-10"
+>
     <div class="pt-1">
-        <button class="text-3xl flex items-center"><ion-icon name="menu-outline"></ion-icon></button>
+        <button class="text-3xl flex items-center"
+            ><ion-icon name="menu-outline"></ion-icon></button
+        >
     </div>
-    <ul class="gap-12 font-semibold items-center hidden text-xl md:flex ">
-        <li><a class="duration-300 hover:text-slate-500" href="">Peliculas</a></li>
+    <ul class="gap-12 font-semibold items-center hidden text-xl md:flex">
+        <li>
+            <a class="duration-300 hover:text-slate-500" href="">Peliculas</a>
+        </li>
         <li><a class="duration-300 hover:text-slate-500" href="">Inicio</a></li>
         <li><a class="duration-300 hover:text-slate-500" href="">Series</a></li>
     </ul>
     <div class="flex gap-2">
         {
             usuario ? (
-                <button class=""><img class="rounded-lg h-10 w-10 object-cover" src={usuario.img} alt=""></button>
+                <button class="">
+                    <img
+                        class="rounded-lg h-10 w-10 object-cover"
+                        src={usuario.img}
+                        alt=""
+                    />
+                </button>
             ) : (
                 <>
-                    <button class="px-8 py-2 border-2 rounded-lg border-white hover:bg-white hover:text-black duration-500">Ingresar</button>
-                    <button class="px-6 py-2 border-2 bg-white rounded-lg text-black font-semibold">Registrarse</button>
+                    <button class="px-8 py-2 border-2 rounded-lg border-white hover:bg-white hover:text-black duration-500">
+                        Ingresar
+                    </button>
+                    <button class="px-6 py-2 border-2 bg-white rounded-lg text-black font-semibold">
+                        Registrarse
+                    </button>
                 </>
-             )
-        }    
+            )
+        }
     </div>
 </div>
 
 <script>
-    window.addEventListener('scroll', function() {
-        const navbar = document.getElementById('navbar');
+    window.addEventListener("scroll", function () {
+        const navbar = document.getElementById("navbar");
         if (window.scrollY > 0) {
-            navbar.classList.add('bg-neutral-900');
+            navbar.classList.add("bg-neutral-900");
         } else {
-            navbar.classList.remove('bg-neutral-900');
+            navbar.classList.remove("bg-neutral-900");
         }
     });
 </script>
-
