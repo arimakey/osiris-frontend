@@ -1,0 +1,58 @@
+---
+import '@splidejs/splide/dist/css/splide.min.css'; // Importa los estilos de Splide
+import MoviesItems from './MoviesItems.astro';
+
+const { movies } = Astro.props;
+
+const calculatePercentage = (duration, time) => {
+  const [durationHours, durationMinutes] = duration.split('h').map(part => part.trim().split(' min')[0]);
+  const [timeHours, timeMinutes] = time.split('h').map(part => part.trim().split(' min')[0]);
+
+  const totalMinutes = parseInt(durationHours) * 60 + parseInt(durationMinutes);
+  const viewedMinutes = parseInt(timeHours) * 60 + parseInt(timeMinutes);
+
+  return (viewedMinutes / totalMinutes) * 100;
+};
+
+const movieCount = movies.length; // Cuenta el número de películas
+---
+
+<div class="p-2">
+  <h1 class="text-white text-3xl mb-4 p-1">Continuar Viendo</h1>
+  <div class="splide" data-movie-count={movieCount}>
+    <div class="splide__track">
+      <ul class="splide__list">
+        {movies.map((movie) => (
+          <li class="splide__slide h-64">
+              <MoviesItems
+                title={movie.title}
+                image={movie.img}
+                duration={movie.duration}
+                time={movie.time}
+                link={movie.url}
+                progress={calculatePercentage(movie.duration, movie.time)}
+              />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  import Splide from '@splidejs/splide';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const movieCount = parseInt(document.querySelector('.splide').getAttribute('data-movie-count'), 10);
+    const splide = new Splide('.splide', {
+      type      : 'loop',
+      perPage   : 4,
+      perMove   : 1,
+      pagination: false, // Desactiva los círculos de navegación
+      arrows    : movieCount > 4, // Muestra los botones solo si hay más de 4 películas
+      drag      : false, 
+    });
+
+    splide.mount();
+  });
+</script>
