@@ -33,14 +33,32 @@ const movies = [
     },
     {
         "id": 5,
-        "img": "https://pics.filmaffinity.com/Lady_Bird-546261513-large.jpg",
+        "img": "https://poptaim.com/wp-content/uploads/2021/01/lady_bird_afiche1.jpg",
         "title": "Lady Bird",
         "duration": "1h 34m"
     },
     {
         "id": 6,
-        "img": "https://pics.filmaffinity.com/Lady_Bird-546261513-large.jpg",
-        "title": "Lady Bird",
+        "img": "https://m.media-amazon.com/images/S/pv-target-images/98fb64e7e3b6a8e6f00c45ab0642346182e8ddc69a635862889b2642eec911c2._SX780_.jpg",
+        "title": "Call Me by Your Name",
+        "duration": "1h 34m"
+    },
+    {
+        "id": 7,
+        "img": "https://es.web.img3.acsta.net/pictures/22/06/16/12/54/0504030.jpg",
+        "title": "Gato con botas",
+        "duration": "1h 34m"
+    },
+    {
+        "id": 8,
+        "img": "https://es.web.img3.acsta.net/img/c7/8f/c78f03f18bedb20a5bb8171012b053ff.jpg",
+        "title": "Gardfield",
+        "duration": "1h 34m"
+    },
+    {
+        "id": 9,
+        "img": "https://es.web.img2.acsta.net/medias/nmedia/18/68/23/11/20027493.jpg",
+        "title": "Madagascar",
         "duration": "1h 34m"
     }
 ]
