@@ -1,15 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro"
 import Header from "../components/Header.astro"
-import movies_header from "../data/movies_header.js"
-import movies from "../data/movies"
-import Carousel from "../components/Carousel"
+import { getMovies } from "../api/movies"
+import Carousel from "../components/Carousel.astro"
 import SectionTitle from "../components/SectionTitle.astro"
+
+const movies = getMovies()
 ---
 
 <Layout>
-	<Header movies={movies_header} />
+	<Header movies={movies} />
 	<SectionTitle title="Peliculas recomendadas" />
-	<Carousel client:load movies={movies} />
+	<Carousel />
 	<SectionTitle title="Continua viendo" />
+
 </Layout>

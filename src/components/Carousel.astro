@@ -1,0 +1,60 @@
+---
+import movies from "../data/movies";
+---
+
+<div class="relative group">
+    <div class="carousel flex overflow-x-scroll overflow-y-hidden xl:overflow-y-visible py-1 xl:py-4 [&::-webkit-scrollbar]:hidden extra-padding">
+    {
+        movies.map((movie) => (
+          <a class=" min-w-[125px] md:min-w-[175px] xl:min-w-[200px] mx-2 transform transition-transform duration-300 ease-in-out hover:scale-105" href={`${movie.type}/${movie.id}`} transition:name={`${movie.type}_${movie.id}`}>
+            <img src={movie.poster_path} alt={movie.title} class="rounded-lg w-full h-full transform transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer" />
+          </a>
+        ))
+    }      
+    </div>
+  
+    <div class="scroll-left hover:to-background bg-gradient-to-l from-transparent h-full absolute left-0 top-1/2 transform -translate-y-1/2 w-20 opacity-75 flex flex-col justify-center">
+      <button class="text-3xl py-12 text-white px-2 opacity-0 group-hover:opacity-100 transition-shadow duration-300">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
+    </div>
+
+    <div class="scroll-right hover:to-background bg-gradient-to-r from-transparent h-full absolute right-0 top-1/2 transform -translate-y-1/2 w-20 opacity-80 flex flex-col justify-center">
+      <button class="text-3xl py-12 text-white px-2 opacity-0 group-hover:opacity-100 transition-shadow duration-300">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </button>
+    </div>
+</div>
+  
+<script >
+    document.addEventListener('astro:page-load', function () {
+        const carouselRef = document.querySelector('.carousel');
+        const leftButton = document.querySelector('.scroll-left');
+        const rightButton = document.querySelector('.scroll-right');
+
+        function handleScroll() {
+            const scrollLeft = carouselRef.scrollLeft;
+            const scrollWidth = carouselRef.scrollWidth;
+            const clientWidth = carouselRef.clientWidth;
+
+            leftButton.style.display = scrollLeft > 0 ? 'flex' : 'none';
+            rightButton.style.display = (scrollLeft + clientWidth < scrollWidth) ? 'flex' : 'none';
+        }
+
+        function scrollLeftFunc() {
+            carouselRef.scrollBy({ left: -210, behavior: 'smooth' });
+        }
+
+        function scrollRightFunc() {
+            carouselRef.scrollBy({ left: 210, behavior: 'smooth' });
+        }
+
+        leftButton.addEventListener('click', scrollLeftFunc);
+        rightButton.addEventListener('click', scrollRightFunc);
+
+        window.addEventListener('resize', handleScroll);
+        handleScroll();
+
+        carouselRef.addEventListener('scroll', handleScroll);
+    });
+</script>

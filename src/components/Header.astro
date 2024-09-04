@@ -3,15 +3,15 @@ import HeaderItem from './HeaderItem.astro';
 const { movies } = Astro.props;
 ---
 
-<div id="header-carousel" class="relative overflow-hidden w-full h-[60vh] md:h-[70vh] ">
+<div id="header-carousel" class="relative overflow-hidden w-full h-[60vh] md:h-[70vh] " transition:animate="none">
     {movies.map((movie, index) => (
         <HeaderItem
-            key={index}  // Añadir una key para optimizar la renderización
+            key={index} 
             title={movie.title}
-            image={movie.img}
+            image={movie.backdrop_path}
             duration={movie.duration}
             description={movie.description}
-            class={`carousel-item ${index === 0 ? 'active' : ''}`}  // Clase condicional para el primer elemento
+            class={`carousel-item ${index === 0 ? 'active' : ''}`} 
         />
     ))}
 </div>
@@ -19,20 +19,16 @@ const { movies } = Astro.props;
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", () => {
         const movies = document.querySelectorAll("#header-carousel > *");
-        if (movies.length === 0) return; // Asegúrate de que hay elementos en el carrusel
+        if (movies.length === 0) return;
         let currentIndex = 0;
 
-        // Inicialmente, oculta todas las películas excepto la primera
         movies.forEach((movie, index) => {
             movie.style.display = index === 0 ? "flex" : "none";
         });
 
         setInterval(() => {
-            // Oculta la película actual
             movies[currentIndex].style.display = "none";
-            // Avanza al siguiente índice
             currentIndex = (currentIndex + 1) % movies.length;
-            // Muestra la siguiente película
             movies[currentIndex].style.display = "flex";
         }, 6000);
     });

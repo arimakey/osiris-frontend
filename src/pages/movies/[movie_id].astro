@@ -1,0 +1,16 @@
+---
+import { getMovies, getMovieById } from "../../api/movies"
+import Layout from "../../layouts/Layout.astro"
+
+const { movie_id } = Astro.params
+const movie = getMovieById(movie_id)
+
+if (!movie) Astro.redirect("/404")
+
+const { id, title, overview, backdrop_path, poster_path, vote_average, release_date } = movie
+---
+
+
+<Layout>
+    <img src={poster_path} alt="" class="h-96" transition:name={`movies_${id}`}>
+</Layout>
