@@ -12,11 +12,8 @@ import Accordion from "../components/Accordion";
 ---
 
 <Layout>
-	<Navbar />
 	<Header movies={movies_header} />
 	<SectionTitle title="Peliculas recomendadas" />
 	<Carousel client:load movies={movies} />
 	<SectionTitle title="Continua viendo" />
 </Layout>
-<Footer />
-<Accordion client:load />
