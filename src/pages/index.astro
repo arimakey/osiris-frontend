@@ -8,8 +8,9 @@ import SectionTitle from "../components/SectionTitle.astro"
 const movies = getMovies()
 ---
 
-<Layout>
+<Layout title="Osiris Project">
 	<Header movies={movies} />
 	<SectionTitle title="Peliculas recomendadas" />
-	<Carousel />
+	<Carousel movies={movies}/>
+	<div class="mb-12"></div>
 </Layout>

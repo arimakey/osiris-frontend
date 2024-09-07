@@ -9,7 +9,7 @@ export default function Faq() {
     }
 
     return (
-        <div className="min-h-screen text-white p-8">
+        <div className="text-white p-8">
             <h1 className="text-xl md:text-2xl xl:text-3xl font-bold mb-8 text-center">Preguntas frecuentes</h1>
             <div className="max-w-3xl mx-auto space-y-4">
                 {questions.map((faq, index) => (

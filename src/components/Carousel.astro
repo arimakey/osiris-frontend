@@ -1,12 +1,12 @@
 ---
-import movies from "../data/movies";
+const { movies } = Astro.props
 ---
 
 <div class="relative group">
     <div class="carousel flex overflow-x-scroll overflow-y-hidden xl:overflow-y-visible py-1 xl:py-4 [&::-webkit-scrollbar]:hidden extra-padding px-4 sm:px-6 xl:px-8 gap-2 md:gap-4">
     {
         movies.map((movie) => (
-          <a class=" min-w-[125px] md:min-w-[175px] xl:min-w-[200px] transform transition-transform duration-300 ease-in-out hover:scale-105" href={`${movie.type}/${movie.id}`} transition:name={`${movie.type}_${movie.id}`}>
+          <a class=" min-w-[125px] md:min-w-[175px] xl:min-w-[200px] transform transition-transform duration-300 ease-in-out hover:scale-105" href={`/${movie.type}/${movie.id}`} transition:name={`${movie.type}_${movie.id}`}>
             <img src={movie.poster_path} alt={movie.title} class="rounded-lg w-full h-full transform transition-transform duration-300 ease-in-out hover:scale-105 cursor-pointer" />
           </a>
         ))

@@ -1,0 +1,11 @@
+<button class="text-xl md:text-2xl bg-neutral-900 text-white p-2 md:p-3 rounded-lg shadow-lg hover:bg-neutral-800 transition-colors duration-300 w-12 h-12 flex justify-center items-center activefocus:">
+    <ion-icon name="notifications-outline" id="alarm"></ion-icon>
+</button>
+
+<script>
+    document.addEventListener('astro:page-load', function () {
+        document.getElementById('alarm').addEventListener('click', function () {
+            document.getElementById('alarm').name = 'notifications';
+        });
+    });
+</script>
