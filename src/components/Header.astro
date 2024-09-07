@@ -3,7 +3,7 @@ import HeaderItem from './HeaderItem.astro';
 const { movies } = Astro.props;
 ---
 
-<div id="header-carousel" class="relative overflow-hidden w-full h-96 md:h-[36rem] " transition:animate="none">
+<div id="header-carousel" class="relative overflow-hidden w-full h-96 md:h-[36rem] ">
     {movies.map((movie, index) => (
         <HeaderItem
             key={index} 
@@ -17,7 +17,7 @@ const { movies } = Astro.props;
 </div>
 
 <script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("astro:page-load", () => {
         const movies = document.querySelectorAll("#header-carousel > *");
         if (movies.length === 0) return;
         let currentIndex = 0;
