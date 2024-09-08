@@ -5,14 +5,21 @@ import Header from "../components/Header.astro";
 import movies_header from "../data/movies_header.js";
 import Navbar from "../components/Navbar.astro";
 import movies from "../data/movies";
+import top_series from "../data/top_series";
+import top_movies from "../data/top_movies";
 import Carousel from "../components/Carousel";
+import SeriesTop from '../components/SeriesTop.astro';
+import MoviesTop from '../components/MoviesTop.astro';
 import SectionTitle from "../components/SectionTitle.astro";
 ---
 
 <Layout>
+
 	<Navbar />
 	<Header movies={movies_header} />
 	<SectionTitle title="Peliculas recomendadas" />
 	<Carousel client:load movies={movies} />
-	<SectionTitle title="Continua viendo" />
+	<SeriesTop topserie={top_series} />
+	<MoviesTop topmovie={top_movies} />
+	
 </Layout>
