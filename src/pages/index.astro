@@ -1,18 +1,16 @@
 ---
-// Aca va los imports, codigo javascript
-import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
-import movies_header from "../data/movies_header.js";
-import Navbar from "../components/Navbar.astro";
-import movies from "../data/movies";
-import Carousel from "../components/Carousel";
-import SectionTitle from "../components/SectionTitle.astro";
+import Layout from "../layouts/Layout.astro"
+import Header from "../components/Header.astro"
+import { getMovies } from "../api/movies"
+import Carousel from "../components/Carousel.astro"
+import SectionTitle from "../components/SectionTitle.astro"
+
+const movies = getMovies()
 ---
 
-<Layout>
-	<Navbar />
-	<Header movies={movies_header} />
+<Layout title="Osiris Project">
+	<Header movies={movies} />
 	<SectionTitle title="Peliculas recomendadas" />
-	<Carousel client:load movies={movies} />
-	<SectionTitle title="Continua viendo" />
+	<Carousel movies={movies} main="true"/>
+	<div class="mb-12"></div>
 </Layout>

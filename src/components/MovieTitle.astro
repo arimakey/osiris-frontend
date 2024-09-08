@@ -1,0 +1,24 @@
+---
+import { formatMinutes } from "../utils/general"
+import AlarmButton from "./AlarmButton.astro"
+import PlayButton from "./PlayButton.astro"
+
+const { title, description, duration } = Astro.props
+---
+<div class="animate-slide-in">
+    <div class="flex flex-row items-baseline gap-3">
+        <h1 class="text-3xl md:text-5xl font-bold leading-tight text-accent">
+            {title}
+        </h1>
+        <p class="text-base md:text-lg text-primary">
+            {formatMinutes(parseInt(duration))}
+        </p>
+    </div>
+    <p class="text-base md:text-md mt-4 mb-7 max-w-2xl md:max-w-4xl text-primary">
+        {description}
+    </p>
+    <div class="flex flex-row gap-4 md:flex-row md:gap-4">
+        <PlayButton />
+        <AlarmButton />
+    </div>
+</div>

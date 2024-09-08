@@ -1,12 +1,10 @@
 ---
-let usuario ;
 const currentPath = Astro.url.pathname;
-
-// Verificar si estamos en el lado del cliente
-if (typeof window !== 'undefined') {
-    // Llamar a la función que obtiene el usuario del localStorage
-    usuario = getUsuarioFromLocalStorage();
-}
+const usuario = {
+    name: "Jose",
+    img: "https://avatarfiles.alphacoders.com/967/96792.jpg",
+};
+---
 
 function getUsuarioFromLocalStorage() {
     // Obtener el objeto 'usuario' almacenado en localStorage
@@ -18,7 +16,7 @@ function getUsuarioFromLocalStorage() {
 ---
 <div
     id="navbar"
-    class="fixed top-0 left-0 w-full flex justify-between text-white px-8 py-4 items-center transition-colors duration-500 z-10"
+    class="fixed top-0 left-0 w-full flex justify-between text-primary px-6 md:px-8 py-4 items-center transition-colors duration-500 z-10"
 >
     <!-- Botón de menú -->
     <div class="pt-1">
@@ -26,14 +24,12 @@ function getUsuarioFromLocalStorage() {
             <ion-icon name="menu-outline"></ion-icon>
         </button>
     </div>
-
-    <!-- Lista de navegación centrada -->
-    <ul class="gap-12 font-semibold items-center hidden text-xl lg:flex absolute left-1/2 transform -translate-x-1/2">
+  <ul class="gap-12 font-semibold items-center hidden text-xl lg:flex absolute left-1/2 transform -translate-x-1/2">
         <li>
-            <a class="duration-300 hover:text-slate-500" href="">Peliculas</a>
+            <a class="duration-300 hover:text-accent" href="/movies">Peliculas</a>
         </li>
-        <li><a class="duration-300 hover:text-slate-500" href="/">Inicio</a></li>
-        <li><a class="duration-300 hover:text-slate-500" href="">Series</a></li>
+        <li><a class="duration-300 hover:text-accent" href="/">Inicio</a></li>
+        <li><a class="duration-300 hover:text-accent" href="/series">Series</a></li>
     </ul>
 
     <!-- Botones de ingresar y registrarse o avatar del usuario -->

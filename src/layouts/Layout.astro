@@ -1,5 +1,9 @@
 ---
-const { title } = Astro.props;
+import { ViewTransitions } from "astro:transitions";
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+
+const { title, background } = Astro.props;
 ---
 
 <html lang="en">
@@ -17,8 +21,12 @@ const { title } = Astro.props;
 			nomodule
 			src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
 		></script>
+		<ViewTransitions />
 	</head>
-	<body class="bg-background">
+	<body class="relative bg-background flex flex-col min-h-screen" style={background ? `background-image: url(${background}); background-size: cover; background-position: center;` : ""}>
+		{background && <div class="absolute inset-0 bg-black opacity-60 -z-10"></div>}
+		<Navbar />
 		<slot />
+		<Footer />
 	</body>
 </html>
