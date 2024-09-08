@@ -1,0 +1,161 @@
+<div class="flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
+    <div class="text-white p-8 rounded-lg w-full max-w-sm">
+        <h2 class="text-2xl font-bold mt-10 mb-4 text-center">Bienvenido!</h2>
+        <p class="mb-5 text-center text-sm text-neutral-400">Ingresa tu correo y disfruta del mejor cine!</p>
+        <form class="space-y-4">
+            <div class="relative">
+                <input type="text" id="username" name="username" required class="block w-full p-3 pl-3 pr-12 bg-background text-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Ingrese username">
+                <ion-icon name="person-circle-outline" class="absolute right-0 top-0 pt-2 pr-3 text-3xl text-white pointer-events-none"></ion-icon>
+            </div>
+            <div class="relative">
+                <input type="password" id="password" name="password" required class="block w-full p-3 pl-3 pr-12 bg-background text-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="*****************">
+                <ion-icon name="eye-outline" class="absolute right-0 top-0 pt-2 pr-3 text-3xl text-white pointer-events-none"></ion-icon>
+            </div>
+            
+            <button type="submit" class="w-full text-white py-2 px-4 rounded-md shadow-sm bg-gradient-to-r from-blue-700 via-indigo-600 to-purple-600 transition duration-400 ease-in-out hover:from-blue-800 hover:via-indigo-700 hover:to-purple-700 active:scale-90">Ingresar</button>
+            <div class="mb-6 flex justify-center gap-3 text-sm text-neutral-100">
+                <p>Aún no tienes cuenta?</p>
+                <a class="text-blue-600 hover:text-blue-800" href="/register">Regístrate Aquí</a>
+            </div>
+            <div class="flex items-center gap-4 w-full">
+                <hr class="w-3/5">
+                <p>or</p>
+                <hr class="w-3/5">
+            </div>
+        </form>
+        <div class="flex items-center justify-center gap-5 mt-4">
+            <button class="px-9 py-3 flex items-center rounded-lg hover:bg-neutral-800 bg-neutral-950 text-2xl duration-500">
+                <ion-icon name="logo-facebook"></ion-icon>
+            </button>
+            <button class="px-9 py-3 flex items-center rounded-lg hover:bg-neutral-800 bg-neutral-950 text-2xl duration-500">
+                <ion-icon name="logo-google"></ion-icon>
+            </button>
+            <button class="px-9 py-3 flex items-center rounded-lg hover:bg-neutral-800 bg-neutral-950 text-2xl duration-500">
+                <ion-icon name="logo-apple"></ion-icon>
+            </button>
+        </div>
+    </div>
+</div>
+<div id="toast" class="fixed bottom-4 right-4 z-50 bg-white text-black p-4 rounded-lg shadow-lg transition-transform transform translate-y-10 opacity-0 duration-300 ease-in-out flex items-center gap-4">
+    <div id="toast-icon" class="text-2xl"></div>
+    <p id="toast-message" class="font-medium"></p>
+</div>
+
+<script>
+    document.querySelector('form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        // Casting para que TypeScript sepa que los inputs tienen la propiedad 'value'
+        const usernameInput = document.querySelector('input[type="text"]') as HTMLInputElement;
+        const passwordInput = document.querySelector('input[type="password"]') as HTMLInputElement;
+        const username = usernameInput.value;
+        const password = passwordInput.value;
+        
+        try {
+            const response = await fetch('https://osiris-c1edcd2f7054.herokuapp.com/auth/login/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            });
+    
+            const data = await response.json();
+    
+            // Si el login fue exitoso
+
+            //-----------------------------------------------------------------------------------------
+            //guardar token en las cookies y guardar datos del usuario en el local storage
+            //-----------------------------------------------------------------------------------------
+
+            if (response.ok) {
+                // Supongamos que el token viene en la respuesta como `data.token` y los datos del usuario como `data.user`
+                
+                // Guardar token en las cookies
+                document.cookie = `token=${data.token}; Secure; SameSite=Strict; path=/`;
+
+                // Guardar datos del usuario en el local storage
+                localStorage.setItem('user', JSON.stringify(data.user));
+
+                // Mostrar toast de éxito
+                showToast('Login exitoso, disfruta del mejor cine B)', 'success');
+
+                // Redirigir después de 2 segundos
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 2000);
+            } else {
+                // Mostrar toast de error
+                showToast('Error: nombre de usuario o contraseña incorrecta', 'error');
+            }
+        } catch (error) {
+            console.error('Hubo un problema con la consulta:', error);
+            showToast('Error al conectar con el servidor.', 'error');
+        }
+        
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Seleccionar los botones de Facebook, Google y Apple
+        const facebookButton = document.querySelector('button ion-icon[name="logo-facebook"]').parentElement;
+        const googleButton = document.querySelector('button ion-icon[name="logo-google"]').parentElement;
+        const appleButton = document.querySelector('button ion-icon[name="logo-apple"]').parentElement;
+
+        // Añadir los event listeners para mostrar el toast
+        facebookButton.addEventListener('click', function() {
+            showToast('El inicio de sesión con Facebook no está disponible por el momento.', 'info');
+        });
+
+        googleButton.addEventListener('click', function() {
+            showToast('El inicio de sesión con Google no está disponible por el momento.', 'info');
+        });
+
+        appleButton.addEventListener('click', function() {
+            showToast('El inicio de sesión con Apple no está disponible por el momento.', 'info');
+        });
+    });
+
+    let toastTimeout;
+
+    function showToast(message: string, type: 'success' | 'error' | 'info'): void {
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+        const toastIcon = document.getElementById('toast-icon');
+
+        // Cambiar el mensaje y el ícono del toast
+        toastMessage.textContent = message;
+        
+        if (type === 'success') {
+            toastIcon.innerHTML = '<ion-icon name="checkmark-circle-outline" class="text-green-500"></ion-icon>';
+            toast.classList.remove('border-red-500', 'border-blue-500');
+            toast.classList.add('border-green-500');
+        } else if (type === 'error') {
+            toastIcon.innerHTML = '<ion-icon name="alert-circle-outline" class="text-red-500"></ion-icon>';
+            toast.classList.remove('border-green-500', 'border-blue-500');
+            toast.classList.add('border-red-500');
+        } else if (type === 'info') {
+            toastIcon.innerHTML = '<ion-icon name="information-circle-outline" class="text-blue-500"></ion-icon>';
+            toast.classList.remove('border-green-500', 'border-red-500');
+            toast.classList.add('border-blue-500');
+        }
+
+        // Mostrar el toast con animación
+        toast.classList.remove('hidden', 'translate-y-10', 'opacity-0');
+        toast.classList.add('translate-y-0', 'opacity-100');
+
+        // Ocultar el toast después de 3 segundos
+        if (toastTimeout) {
+            clearTimeout(toastTimeout);
+        }
+
+        // Establecer un nuevo timeout para ocultar el toast después de 3 segundos
+        toastTimeout = setTimeout(() => {
+            toast.classList.add('translate-y-10', 'opacity-0');
+            setTimeout(() => toast.classList.add('hidden'), 500); // Ocultar después de la animación
+        }, 3000);
+    }
+
+
+</script>
