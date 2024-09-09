@@ -1,61 +1,47 @@
 ---
-const currentPath = Astro.url.pathname;
 const usuario = {
     name: "Jose",
     img: "https://avatarfiles.alphacoders.com/967/96792.jpg",
 };
 ---
 
-function getUsuarioFromLocalStorage() {
-    // Obtener el objeto 'usuario' almacenado en localStorage
-    const usuarioData = localStorage.getItem('usuario');
-    
-    // Si existe el usuario en localStorage, parsearlo y devolverlo, sino devolver null
-    return usuarioData ? JSON.parse(usuarioData) : null;
-}
----
 <div
     id="navbar"
     class="fixed top-0 left-0 w-full flex justify-between text-primary px-6 md:px-8 py-4 items-center transition-colors duration-500 z-10"
 >
-    <!-- Botón de menú -->
     <div class="pt-1">
-        <button class="text-3xl flex items-center">
-            <ion-icon name="menu-outline"></ion-icon>
-        </button>
+        <button class="text-3xl flex items-center"
+            ><ion-icon name="menu-outline"></ion-icon></button
+        >
     </div>
-  <ul class="gap-12 font-semibold items-center hidden text-xl lg:flex absolute left-1/2 transform -translate-x-1/2">
+    <ul class="gap-12 font-semibold items-center hidden md:flex">
         <li>
             <a class="duration-300 hover:text-accent" href="/movies">Peliculas</a>
         </li>
         <li><a class="duration-300 hover:text-accent" href="/">Inicio</a></li>
         <li><a class="duration-300 hover:text-accent" href="/series">Series</a></li>
     </ul>
-
-    <!-- Botones de ingresar y registrarse o avatar del usuario -->
     <div class="flex gap-2">
-        {usuario ? (
-            <button class="">
-                <img
-                    class="rounded-lg h-10 w-10 object-cover"
-                    src={usuario.img}
-                    alt="Imagen del usuario"
-                />
-            </button>
-        ) : (
-            <>
-                {currentPath !== '/login' && (
-                    <a href="/login" class="px-8 py-2 border-2 rounded-lg border-white hover:bg-white hover:text-black duration-500">
+        {
+            usuario ? (
+                <button class="">
+                    <img
+                        class="rounded-lg h-10 w-10 object-cover"
+                        src={usuario.img}
+                        alt=""
+                    />
+                </button>
+            ) : (
+                <>
+                    <button class="px-8 py-2 border-2 rounded-lg border-white hover:bg-white hover:text-black duration-500">
                         Ingresar
-                    </a>
-                )}
-                {currentPath !== '/register' && (
-                    <a href="/register" class="px-6 py-2 border-2 bg-white rounded-lg text-black font-semibold hover:bg-background hover:text-white duration-500">
+                    </button>
+                    <button class="px-6 py-2 border-2 bg-white rounded-lg text-black font-semibold">
                         Registrarse
-                    </a>
-                )}
-            </>
-        )}
+                    </button>
+                </>
+            )
+        }
     </div>
 </div>
 
