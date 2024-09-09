@@ -1,0 +1,53 @@
+---
+
+const { title, image, number, link, description, duration } = Astro.props;
+
+---
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ionicons@5.5.2/dist/ionicons/ionicons.css">
+
+<div class="relative w-full h-full group overflow-visible">
+  <!-- Imagen -->
+  <img 
+    src={image}
+    alt={title}
+    class="block w-full h-60 sm:h-80 md:h-96 lg:h-[450px] object-cover rounded transition-transform duration-300 ease-in-out transform group-hover:scale-105"
+  />
+
+  <!-- Número en la esquina superior derecha -->
+  <div class="absolute top-0 right-20 bg-blue-600 text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold  px-4 py-4">
+    {number}
+  </div>
+
+  <!-- Contenedor para información y botones -->
+  <div class="absolute bottom-0 left-0 right-0 p-4 flex flex-col items-start">
+    <!-- Información de la serie -->
+    <div class="text-white rounded-b-lg mb-4 w-full max-w-xs md:max-w-md lg:max-w-xl p-2">
+      <div class="flex flex-row items-center text-left gap-2">
+        <h1 class="text-base sm:text-lg md:text-xl lg:text-2xl font-bold">{title}</h1>
+        <p class="text-xs sm:text-sm md:text-base lg:text-lg">{duration}</p>
+      </div>
+      <p class="text-xs sm:text-sm md:text-base lg:text-lg mt-1">{description}</p>
+    </div>
+
+    <!-- Botones -->
+    <div class="flex flex-row items-center space-x-2 p-3">
+      <a href="{link}" class="text-xs sm:text-xs md:text-base lg:text-sm p-1 sm:p-2 bg-blue-700 hover:bg-blue-600 rounded w-16 sm:w-36 h-8 sm:h-10 text-center text-white">
+        Ver Ahora
+      </a>
+
+      <button class="text-white p-1 sm:p-2 bg-gray-700 hover:bg-gray-600 rounded-full">
+        <ion-icon name="notifications-outline" size="small"></ion-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
