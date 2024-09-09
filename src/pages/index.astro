@@ -1,5 +1,4 @@
 ---
-// Aca va los imports, codigo javascript
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import movies_header from "../data/movies_header.js";
@@ -13,13 +12,12 @@ import MoviesTop from '../components/MoviesTop.astro';
 import SectionTitle from "../components/SectionTitle.astro";
 ---
 
-<Layout>
-
+<Layout title="Osiris Project">
 	<Navbar />
-	<Header movies={movies_header} />
+	<Header movies={movies} />
 	<SectionTitle title="Peliculas recomendadas" />
-	<Carousel client:load movies={movies} />
+  <Carousel movies={movies} main="true"/>
 	<SeriesTop topserie={top_series} />
 	<MoviesTop topmovie={top_movies} />
-	
+	<div class="mb-12"></div>
 </Layout>

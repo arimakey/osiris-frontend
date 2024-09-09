@@ -5,6 +5,9 @@ export default {
 		extend: {
 			colors: {
 				'background': '#19181D',
+				'primary': '#C2C2C2',
+				'secondary': '#808080',
+				'accent': '#ECECEC',
 			},
 		},
 	},

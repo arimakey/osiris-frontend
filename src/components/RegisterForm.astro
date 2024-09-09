@@ -1,0 +1,178 @@
+<div class="flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
+    <div class="text-white p-8 rounded-lg w-full max-w-sm">
+        <h2 class="text-2xl font-bold mt-10 mb-4 text-center">Bienvenido!</h2>
+        <p class="mb-5 text-center text-sm text-neutral-400">Ingresa tu correo y contraseña y disfruta del mejor cine!</p>
+        <form id="registerForm" class="space-y-4">
+            <div class="relative">
+                <input type="text" id="username" name="username" required class="block w-full p-3 pl-3 pr-12 bg-background text-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Username">
+                <ion-icon name="person-circle-outline" class="absolute right-0 top-0 pt-2 pr-3 text-3xl text-white pointer-events-none"></ion-icon>
+            </div>
+            <div class="relative">
+                <input type="email" id="email" name="email" required class="block w-full p-3 pl-3 pr-12 bg-background text-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Ingrese e-mail">
+                <ion-icon name="mail-outline" class="absolute right-0 top-0 pt-2 pr-3 text-3xl text-white pointer-events-none"></ion-icon>
+            </div>
+            <div class="relative">
+                <input type="password" id="password" name="password" required class="block w-full p-3 pl-3 pr-12 bg-background text-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Ingresar contraseña">
+                <ion-icon name="eye-outline" class="absolute right-0 top-0 pt-2 pr-3 text-3xl text-white pointer-events-none"></ion-icon>
+            </div>
+            <div class="relative">
+                <input type="password" id="confirmPassword" name="confirmPassword" required class="block w-full p-3 pl-3 pr-12 bg-background text-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm" placeholder="Repetir contraseña">
+                <ion-icon name="eye-outline" class="absolute right-0 top-0 pt-2 pr-3 text-3xl text-white pointer-events-none"></ion-icon>
+            </div>
+            
+            <button type="submit" class="w-full text-white py-2 px-4 rounded-md shadow-sm bg-gradient-to-r from-blue-700 via-purple-700 to-pink-500 transition duration-400 ease-in-out hover:from-blue-800 hover:via-purple-800 hover:to-pink-600 active:scale-90">Registrarse</button>
+            <div class="mb-6 flex justify-center gap-3 text-sm text-neutral-100">
+                <p>Ya tienes una cuenta?</p>
+                <a class="text-blue-600 hover:text-blue-800" href="/login">Ingresa Aquí</a>
+            </div>
+            <div class="flex items-center gap-4 w-full">
+                <hr class="w-3/5">
+                <p>or</p>
+                <hr class="w-3/5">
+            </div>
+        </form>
+        <div class="flex items-center justify-center gap-5 mt-4">
+            <button  class="px-9 py-3 flex items-center rounded-lg hover:bg-neutral-800 bg-neutral-950 text-2xl duration-500">
+                <ion-icon name="logo-facebook"></ion-icon>
+            </button>
+            <button  class="px-9 py-3 flex items-center rounded-lg hover:bg-neutral-800 bg-neutral-950 text-2xl duration-500">
+                <ion-icon name="logo-google"></ion-icon>
+            </button>
+            <button  class="px-9 py-3 flex items-center rounded-lg hover:bg-neutral-800 bg-neutral-950 text-2xl duration-500">
+                <ion-icon name="logo-apple"></ion-icon>
+            </button>
+        </div>
+    </div>
+</div>
+<div id="toast" class="fixed bottom-4 right-4 z-50 bg-white text-black p-4 rounded-lg shadow-lg transition-transform transform translate-y-10 opacity-0 duration-300 ease-in-out flex items-center gap-4">
+    <div id="toast-icon" class="text-2xl"></div>
+    <p id="toast-message" class="font-medium"></p>
+</div>
+
+<script>
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+        // Obtener los elementos del formulario y verificar su tipo
+        const passwordElement = document.getElementById('password') as HTMLInputElement;
+        const confirmPasswordElement = document.getElementById('confirmPassword') as HTMLInputElement;
+
+        if (passwordElement && confirmPasswordElement) {
+            const password = passwordElement.value;
+            const confirmPassword = confirmPasswordElement.value;
+
+            if (password !== confirmPassword) {
+                event.preventDefault(); // Evita que el formulario se envíe
+                showToast('Las contraseñas no coinciden. Por favor, inténtalo de nuevo.', 'error');
+                return; // Salir de la función para que no continúe con el envío
+            }
+
+            // Obtener los datos del formulario
+            const usernameElement = document.getElementById('username') as HTMLInputElement;
+            const emailElement = document.getElementById('email') as HTMLInputElement;
+
+            if (usernameElement && emailElement) {
+                const username = usernameElement.value;
+                const email = emailElement.value;
+
+                // Crear el objeto con los datos del formulario
+                const formData = {
+                    username: username,
+                    email: email,
+                    password: password,
+                    password2: confirmPassword
+                };
+
+                // Enviar los datos al servidor
+                fetch('https://osiris-c1edcd2f7054.herokuapp.com/auth/register/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.error) {
+                        
+
+                        showToast('Registro exitoso', 'success')
+
+                        setTimeout(() => {
+                            window.location.href = '/login';
+                        }, 1000);
+                    } else {
+                        console.log(data);
+                        showToast('Error en el registro. (Contraseña con pocos caracteres)', 'error');
+                    }
+                })
+                .catch(error => {
+                    showToast('Error en la solicitud.', 'error');
+                });
+
+                event.preventDefault();
+            }
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Seleccionar los botones de Facebook, Google y Apple
+        const facebookButton = document.querySelector('button ion-icon[name="logo-facebook"]').parentElement;
+        const googleButton = document.querySelector('button ion-icon[name="logo-google"]').parentElement;
+        const appleButton = document.querySelector('button ion-icon[name="logo-apple"]').parentElement;
+
+        // Añadir los event listeners para mostrar el toast
+        facebookButton.addEventListener('click', function() {
+            showToast('El inicio de sesión con Facebook no está disponible por el momento.', 'info');
+        });
+
+        googleButton.addEventListener('click', function() {
+            showToast('El inicio de sesión con Google no está disponible por el momento.', 'info');
+        });
+
+        appleButton.addEventListener('click', function() {
+            showToast('El inicio de sesión con Apple no está disponible por el momento.', 'info');
+        });
+    });
+
+    let toastTimeout;
+
+    function showToast(message: string, type: 'success' | 'error' | 'info'): void {
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+        const toastIcon = document.getElementById('toast-icon');
+
+        // Cambiar el mensaje y el ícono del toast
+        toastMessage.textContent = message;
+        
+        if (type === 'success') {
+            toastIcon.innerHTML = '<ion-icon name="checkmark-circle-outline" class="text-green-500"></ion-icon>';
+            toast.classList.remove('border-red-500');
+            toast.classList.add('border-green-500');
+        } else if (type==='error'){
+            toastIcon.innerHTML = '<ion-icon name="alert-circle-outline" class="text-red-500"></ion-icon>';
+            toast.classList.remove('border-green-500');
+            toast.classList.add('border-red-500');
+        } else if (type==='info'){
+            toastIcon.innerHTML = '<ion-icon name="information-circle-outline" class="text-blue-500"></ion-icon>';
+            toast.classList.remove('border-green-500', 'border-red-500');
+            toast.classList.add('border-blue-500');
+        }
+
+        // Mostrar el toast con animación
+        toast.classList.remove('hidden', 'translate-y-10', 'opacity-0');
+        toast.classList.add('translate-y-0', 'opacity-100');
+
+        // Ocultar el toast después de 3 segundos
+        if (toastTimeout) {
+            clearTimeout(toastTimeout);
+        }
+
+        // Establecer un nuevo timeout para ocultar el toast después de 3 segundos
+        toastTimeout = setTimeout(() => {
+            toast.classList.add('translate-y-10', 'opacity-0');
+            setTimeout(() => toast.classList.add('hidden'), 500); // Ocultar después de la animación
+        }, 3000);
+    }
+</script>
+
+
+    
