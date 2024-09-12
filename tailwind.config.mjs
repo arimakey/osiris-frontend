@@ -8,6 +8,8 @@ export default {
 				'primary': '#C2C2C2',
 				'secondary': '#808080',
 				'accent': '#ECECEC',
+				'active': '#25242D',
+				'dark': '#111013'
 			},
 		},
 	},

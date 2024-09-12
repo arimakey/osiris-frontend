@@ -67,7 +67,7 @@
             // Si el login fue exitoso
 
             //-----------------------------------------------------------------------------------------
-            //guardar token en las cookies y guardar datos del usuario en el local storage
+            //      guardar token en las cookies y guardar datos del usuario en el local storage
             //-----------------------------------------------------------------------------------------
 
             if (response.ok) {
@@ -87,7 +87,6 @@
                     window.location.href = '/';
                 }, 2000);
             } else {
-                // Mostrar toast de error
                 showToast('Error: nombre de usuario o contraseña incorrecta', 'error');
             }
         } catch (error) {

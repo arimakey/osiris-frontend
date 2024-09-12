@@ -1,0 +1,162 @@
+    ---
+
+    import '@splidejs/splide/dist/css/splide.min.css';
+    import TopItem from './TopItem.astro';
+
+    const { topData } = Astro.props;
+    ---
+
+    <div class="relative flex flex-col lg:flex-row lg:items-center lg:space-x-6 overflow-visible ">
+    <div id="series-carrusel" class="splide w-full relative overflow-hidden rounded-xl">
+        <div class="splide__track">
+        <ul class="splide__list">
+            {topData.map((serie) => (
+            <li class="splide__slide">
+                <TopItem
+                title={serie.title}
+                image={serie.img}
+                description={serie.description}
+                duration={serie.duration}
+                number={serie.number}
+                link={serie.url}
+                />
+            </li>
+            ))}
+        </ul>
+        </div>
+
+        <!-- Botones de navegación -->
+        <div class="splide__arrows">
+        <button class="splide__arrow splide__arrow--prev">
+            <ion-icon name="arrow-back-outline" size="small"></ion-icon>
+        </button>
+        <button class="splide__arrow splide__arrow--next bg-black">
+            <ion-icon name="arrow-forward-outline" size="small"></ion-icon>
+        </button>
+        </div>
+    </div>
+    </div>
+
+
+
+    <script>
+        import Splide from "@splidejs/splide";
+
+        document.addEventListener("astro:page-load", () => {
+            const splideSeries = new Splide("#series-carrusel", {
+                type: "loop",
+                perPage: 1,
+                perMove: 1,
+                pagination: false,
+                arrows: true,
+                drag: false,
+            });
+
+            splideSeries.mount();
+        });
+    </script>
+
+    <style>
+        .splide__arrow--prev {
+            position: absolute;
+            z-index: 10; /* Asegúrate de que los botones estén sobre la imagen */
+            top: 85%;
+            transform: translateX(-50%);
+            left: 89%;
+        }
+
+        .splide__arrow--next {
+            position: absolute;
+            transform: translateX(-50%);
+            top: 85%;
+            z-index: 10; /* Asegúrate de que los botones estén sobre la imagen */
+            left: 93%;
+        }
+
+        .splide__arrows .splide__arrow {
+            background-color: #4b4b4b;
+            color: white !important;
+            border-radius: 0.3rem;
+            padding: 0.5rem; /* Ajusta el tamaño del botón si es necesario */
+        }
+
+        .splide__arrows .splide__arrow:hover {
+            background-color: darkgray !important;
+        }
+
+        @media (max-width: 1180px) {
+            /* Pantallas medianas (tablet) */
+            .splide__arrow--prev {
+                position: absolute;
+                transform: translateX(-50%);
+                z-index: 10;
+                left: 87%;
+                top: 83%;
+            }
+
+            .splide__arrow--next {
+                position: absolute;
+                transform: translateX(-50%);
+                top: 83%;
+                z-index: 10;
+                left: 93%;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            /* Pantallas medianas (tablet) */
+            .splide__arrow--prev {
+                position: absolute;
+                transform: translateX(-50%);
+                z-index: 10;
+                left: 87%;
+                top: 83%;
+            }
+
+            .splide__arrow--next {
+                position: absolute;
+                transform: translateX(-50%);
+                top: 83%;
+                z-index: 10;
+                left: 93%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Pantallas pequeñas (móviles) */
+            .splide__arrow--prev {
+                position: absolute;
+                transform: translateX(-50%);
+                z-index: 10;
+                top: 80%;
+                left: 87%;
+            }
+
+            .splide__arrow--next {
+                position: absolute;
+                transform: translateX(-50%);
+                z-index: 10;
+                top: 80%;
+                left: 93%;
+            }
+        }
+
+        @media (max-width: 640px) {
+            /* Pantallas muy pequeñas (móviles más pequeños) */
+            .splide__arrow--prev {
+                position: absolute;
+                transform: translateX(-50%);
+                z-index: 10;
+                top: 75%;
+                left: 85%;
+            }
+
+            .splide__arrow--next {
+                position: absolute;
+                transform: translateX(-50%);
+                z-index: 10;
+                top: 75%;
+                left: 93%;
+            }
+        }
+    </style>

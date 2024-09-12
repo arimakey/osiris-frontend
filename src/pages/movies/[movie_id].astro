@@ -12,10 +12,9 @@ import SectionTitle from "../../components/SectionTitle.astro";
 import Layout from "../../layouts/Layout.astro"
 import { formatMinutes } from "../../utils/general";
 
-// Hacemos la función asíncrona
 const { movie_id } = Astro.params
 
-const movie = await getMovieById(movie_id) // Asegurarnos de usar await aquí
+const movie = await getMovieById(movie_id) 
 
 if (!movie) Astro.redirect("/404")
 
@@ -34,7 +33,7 @@ const recomendations = allMovies.filter((m) => m.id.toString() !== id.toString()
             <img src={poster_path} alt="" class="h-full w-full object-cover" transition:name=`movies_${id}`>
         </div>
     
-        <div class="bg-background text-primary rounded-xl overflow-hidden backdrop-blur-lg w-full bg-[rgba(0,0,0,0.5)] py-8">
+        <div class="text-primary rounded-xl overflow-hidden backdrop-blur-lg w-full bg-background py-8">
             <div class="px-6 xl:px-8">
                 <div class="animate-slide-in">
                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">

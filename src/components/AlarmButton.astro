@@ -1,11 +1,15 @@
-<button class="text-xl md:text-2xl bg-neutral-900 text-white p-2 md:p-3 rounded-lg shadow-lg hover:bg-neutral-800 transition-colors duration-300 w-12 h-12 flex justify-center items-center activefocus:">
+---
+const {type, id} = Astro.params
+---
+
+<button id="alarm_button" class="transition-colors text-base lg:text-lg text-primary p-1 sm:p-2 bg-background hover:bg-active rounded h-8 sm:h-10 w-8 sm:w-10 text-center text-white flex items-center justify-center gap-2">
     <ion-icon name="notifications-outline" id="alarm"></ion-icon>
 </button>
 
 <script>
     document.addEventListener('astro:page-load', function () {
-        document.getElementById('alarm').addEventListener('click', function () {
+        document.getElementById('alarm_button').addEventListener('click', function () {
             document.getElementById('alarm').name = 'notifications';
-        });
+        }); 
     });
 </script>

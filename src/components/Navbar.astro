@@ -1,8 +1,5 @@
 ---
-const usuario = {
-    name: "Jose",
-    img: "https://avatarfiles.alphacoders.com/967/96792.jpg",
-};
+    const token = Astro.cookies.get("token")
 ---
 
 <div
@@ -21,13 +18,13 @@ const usuario = {
         <li><a class="duration-300 hover:text-accent" href="/">Inicio</a></li>
         <li><a class="duration-300 hover:text-accent" href="/series">Series</a></li>
     </ul>
-    <div class="flex gap-2">
+    <div class="flex gap-2" id="sesion">
         {
-            usuario ? (
+            token ? (
                 <button class="">
                     <img
                         class="rounded-lg h-10 w-10 object-cover"
-                        src={usuario.img}
+                        src="https://avatarfiles.alphacoders.com/967/96792.jpg"
                         alt=""
                     />
                 </button>
@@ -42,6 +39,7 @@ const usuario = {
                 </>
             )
         }
+        
     </div>
 </div>
 
@@ -49,9 +47,13 @@ const usuario = {
     window.addEventListener("scroll", function () {
         const navbar = document.getElementById("navbar");
         if (window.scrollY > 0) {
-            navbar.classList.add("bg-neutral-900");
+            navbar.classList.add("bg-dark");
         } else {
-            navbar.classList.remove("bg-neutral-900");
+            navbar.classList.remove("bg-dark");
         }
     });
+
+    window.addEventListener("DOMContentLoaded", () => {
+
+    })
 </script>

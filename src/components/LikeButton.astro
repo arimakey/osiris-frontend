@@ -1,11 +1,12 @@
-<button class="text-xl md:text-2xl bg-neutral-900 text-white p-2 md:p-3 rounded-lg shadow-lg hover:bg-neutral-800 transition-colors duration-300 w-12 h-12 flex justify-center items-center activefocus:">
+<button id="like_button" class="transition-colors text-lg text-primary p-1 sm:p-2 bg-background hover:bg-active rounded h-10 w-10 text-center text-white flex items-center justify-center gap-2">
     <ion-icon name="heart-outline" id="like"></ion-icon>
 </button>
 
 <script>
     document.addEventListener('astro:page-load', function () {
-        document.getElementById('like').addEventListener('click', function () {
+        document.getElementById('like_button').addEventListener('click', function () {
             document.getElementById('like').name = 'heart';
         });
     });
 </script>
+    
