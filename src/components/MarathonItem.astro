@@ -1,0 +1,23 @@
+---
+const { title, image, gift, duration, link } = Astro.props;
+---
+
+<a href={link} class="relative w-full h-52 sm:h-60 md:h-64 lg:h-72 group block" target="_blank" rel="noopener noreferrer">
+    <img 
+      src={image}
+      alt="Not Found" 
+      class="block w-full h-full object-cover rounded transition-opacity duration-300 group-hover:opacity-0"
+    />
+    
+    <!-- Añadimos un segundo <img> para el GIF, que aparece en hover -->
+    <img 
+      src={gift}
+      alt="GIF not found" 
+      class="block w-full h-full object-cover rounded transition-opacity duration-300 absolute top-0 left-0 opacity-0 group-hover:opacity-100"
+    />
+
+    <div class="absolute bottom-0 left-0 w-full flex flex-row mb-2 ml-2">
+      <h1 class="text-white text-3xl">{title}</h1>
+      <p class="text-white text-xl ml-4 mt-2">{duration}</p>
+    </div>
+</a>

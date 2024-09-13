@@ -5,6 +5,8 @@ import Navbar from "../components/Navbar.astro";
 import movies from "../data/movies";
 import top_series from "../data/top_series";
 import top_movies from "../data/top_movies";
+import marathon_movies from "../data/marathon_movies";
+import Marathon from "../components/MarathonMovies.astro"
 import Carousel from "../components/Carousel.astro";
 import SectionTitle from "../components/SectionTitle.astro";
 import TopSection from "../components/TopSection.astro";
@@ -15,6 +17,8 @@ import TopSection from "../components/TopSection.astro";
 	<Header movies={movies} />
 	<SectionTitle title="Peliculas recomendadas" />
   	<Carousel movies={movies} main="true"/>
+	  <SectionTitle title="Películas para Maratonear" />
+	<Marathon marathon_movies={marathon_movies} />
 	<SectionTitle title="Top Series" />
 	<TopSection topData={top_series} />
 	<div class="mb-16"></div>
