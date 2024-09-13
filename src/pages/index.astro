@@ -12,18 +12,11 @@ import Marathon from "../components/MarathonMovies.astro"
 import Carousel from "../components/Carousel.astro";
 import SectionTitle from "../components/SectionTitle.astro";
 import TopSection from "../components/TopSection.astro";
+import ConfigureUser from "../components/ConfigureUser.astro";
 ---
 
 <Layout title="Osiris Project">
 	<Navbar />
-	<Header movies={movies} />
-	<SectionTitle title="Peliculas recomendadas" />
-  	<Carousel movies={movies} main="true"/>
-	  <SectionTitle title="Películas para Maratonear" />
-	<Marathon marathon_movies={marathon_movies} />
-	<SectionTitle title="Top Series" />
-	<TopSection topData={top_series} />
-	<SectionTitle title="Continuar Viendo" />
-	<MoviesContinue continue_movies={continue_movies} />
+	<ConfigureUser />
 	<div class="mb-16"></div>
 </Layout>
