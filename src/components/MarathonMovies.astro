@@ -1,0 +1,20 @@
+---
+    import MarathonItem from './MarathonItem.astro'
+    const { marathon_movies } = Astro.props
+---
+
+<div class="px-4 sm:px-6 xl:px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-2">
+        {
+            marathon_movies.map((movie) => (
+                <MarathonItem
+                    title={movie.title} 
+                    image={movie.img} 
+                    duration={movie.duration} 
+                    gift={movie.gift} 
+                    link={movie.url} 
+                />
+            ))
+        }
+    </div>
+</div>
