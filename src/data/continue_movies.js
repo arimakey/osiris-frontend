@@ -31,14 +31,14 @@ const continue_movies = [
         "time": "1h 18 min",
         "url": "https://example.com/elclubdelapelea"
     },
-    // {
-    //     "id": 5,
-    //     "img": "https://m.media-amazon.com/images/M/MV5BY2JhNzliZDQtOGYxNS00ZWY3LWFlZDAtOTkyMDQ3ZWJiMjAxXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg",
-    //     "title": "Terminator 2",
-    //     "duration": "2h 17 min",
-    //     "time": "1h 40 min",
-    //     "url": "https://example.com/elclubdelapelea"
-    // },
+    {
+        "id": 5,
+        "img": "https://m.media-amazon.com/images/M/MV5BY2JhNzliZDQtOGYxNS00ZWY3LWFlZDAtOTkyMDQ3ZWJiMjAxXkEyXkFqcGdeQXVyMTUzMTg2ODkz._V1_.jpg",
+        "title": "Terminator 2",
+        "duration": "2h 17 min",
+        "time": "1h 40 min",
+        "url": "https://example.com/elclubdelapelea"
+    },
 ];
 
 export default continue_movies;
