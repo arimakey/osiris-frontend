@@ -1,0 +1,26 @@
+---
+const {image, link, progress , title, duration} = Astro.props;
+---
+
+<div>
+  <a href={link} class="relative p-1 w-full h-48 group block" target="_blank" rel="noopener noreferrer">
+    <img 
+      src={image}
+      alt="Not Found"
+      class="block w-full h-full object-cover rounded-t-lg"
+    />
+  
+    <!-- Barra de Progreso en la Parte Inferior -->
+    <div class=" bottom-0 left-0 w-full ">
+      <div class="relative w-full h-2 bg-red-600 rounded-b-lg">
+        <div class="absolute  rounded-b-lg left-0 top-0 h-full bg-red-800" style={{ width: `${progress}%` }}></div>
+      </div>
+    </div>
+  
+  </a>
+  
+  <div class="w-full p-2">
+    <h1 class="text-white font-bold text-accent text-base lg:text-lg">{title}</h1>
+    <p class="text-primary text-sm lg:text-base">{duration}</p>
+  </div>
+</div>

@@ -1,0 +1,115 @@
+---
+import '@splidejs/splide/dist/css/splide.min.css'; // Importa los estilos de Splide
+import ContinueItems from './ContinueItems.astro';
+const { continue_movies } = Astro.props;
+const calculatePercentage = (duration, time) => {
+  const [durationHours, durationMinutes] = duration.split('h').map(part => part.trim().split(' min')[0]);
+  const [timeHours, timeMinutes] = time.split('h').map(part => part.trim().split(' min')[0]);
+  const totalMinutes = parseInt(durationHours) * 60 + parseInt(durationMinutes);
+  const viewedMinutes = parseInt(timeHours) * 60 + parseInt(timeMinutes);
+  return (viewedMinutes / totalMinutes) * 100;
+};
+const movieCount = continue_movies.length; // Cuenta el número de películas
+---
+
+<div class="px-4 sm:px-6 xl:px-8">
+  <div id="movie-continue" class="splide" data-movie-count={movieCount}>
+    <div class="splide__track">
+      <ul class="splide__list">
+        {continue_movies.map((movie) => (
+           <li class="splide__slide ">
+              <ContinueItems
+                image={movie.img}
+                title={movie.title}
+                duration={movie.duration}
+                link={movie.url}
+                progress={calculatePercentage(movie.duration, movie.time)}
+              />
+          </li>
+        ))}
+      </ul>
+
+      <div class="splide__arrows">
+        <button class="splide__arrow splide__arrow--prev">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18l6-6-6-6" />
+          </svg>                 
+        </button>
+        <button class="splide__arrow splide__arrow--next">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18l6-6-6-6" />
+          </svg>                
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Estilos personalizados para los botones de navegación de Splide */
+  .splide__arrow {
+    position: absolute; /* Asegura que los botones estén posicionados de forma fija */
+    top: 42%; /* Centra verticalmente los botones */
+    transform: translateY(-50%); /* Ajusta la posición para centrar verticalmente */
+    border-radius: 50%; /* Bordes redondeados */
+    width: 40px; /* Ancho del botón */
+    height: 40px; /* Alto del botón */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .splide__arrow svg {
+    width: 20px; /* Tamaño del ícono */
+    height: 20px;
+    fill: transparent; /* Color del ícono */
+  }
+</style>
+
+
+
+<script>
+  import Splide from '@splidejs/splide';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const movieCount = parseInt(document.querySelector('#movie-continue').getAttribute('data-movie-count'), 10);
+    const splide = new Splide('#movie-continue', {
+      type       : 'loop',
+      perPage    : 4,
+      perMove    : 1,
+      pagination : false, // Desactiva los círculos de navegación
+      arrows     : movieCount > 4, // Muestra los botones solo si hay más de 4 películas
+      drag       : false,
+
+      breakpoints: {
+        640: {
+          type       : 'loop',
+          perPage    : 1,
+          perMove    : 1,
+          pagination : false, // Desactiva los círculos de navegación
+          arrows     : movieCount > 1, // Muestra los botones solo si hay más de 1 película
+          drag       : false,
+        },
+        768: {
+          type       : 'loop',
+          perPage    : 2,
+          perMove    : 1,
+          pagination : false, // Desactiva los círculos de navegación
+          arrows     : movieCount > 2, // Muestra los botones solo si hay más de 2 películas
+          drag       : false,
+        },
+        1024: {
+          type       : 'loop',
+          perPage    : 3,
+          perMove    : 1,
+          pagination : false, // Desactiva los círculos de navegación
+          arrows     : movieCount > 3, // Muestra los botones solo si hay más de 3 películas
+          drag       : false,
+        },
+      },
+    });
+
+    splide.mount();
+  });
+</script>
