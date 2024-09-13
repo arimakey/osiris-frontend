@@ -1,0 +1,97 @@
+<div class="flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 mt-36 mb-8 lg:mt-10">
+    <div class="text-white p-8 rounded-lg w-full max-w-3xl bg-active">
+        <h2 class="text-2xl font-bold mb-8 text-center text-primary">Configurar Usuario</h2>
+        <form class="space-y-4">
+
+            <div class="flex flex-col lg:flex-row items-center lg:items-start mb-4">
+                <!-- Imagen a la izquierda -->
+                <div class="flex-shrink-0 w-full lg:w-1/2 flex items-center justify-center relative mb-4 lg:mb-0">
+                    <!-- Imagen de perfil con funcionalidad para subir imagen -->
+                    <div class="relative cursor-pointer">
+                        <!-- Imagen de perfil -->
+                        <img id="profileImage" src="https://i.pinimg.com/474x/31/ec/2c/31ec2ce212492e600b8de27f38846ed7.jpg" 
+                            alt="Profile" 
+                            class="rounded-full w-48 h-48 lg:w-56 lg:h-56 object-cover shadow-lg"> 
+                        
+                        <!-- Contenedor para el input de archivo como botón -->
+                        <input type="file" name="foto" id="foto" accept="image/*" 
+                            class="absolute inset-0 opacity-0 cursor-pointer z-10">
+                        
+                        <!-- Botón negro en el centro de la imagen -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button type="button" id="uploadButton" class="bg-active text-white px-4 py-2 rounded flex items-center opacity-0 hover:opacity-100 transition-opacity duration-300 z-20">
+                                <ion-icon name="camera-outline" class="text-2xl text-white lg:mr-2"></ion-icon>
+                                <p class="hidden hidden md:block">Subir Foto</p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Formulario a la derecha -->
+                <div class="w-full lg:w-1/2 space-y-5">
+                    <div class="relative">
+                        <input type="text" id="username" name="username" required 
+                            class="block w-full p-3 pl-3 pr-12 bg-background text-white border border-gray-600 rounded-lg shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-200 ease-in-out" 
+                            placeholder="Ingrese username">
+                        <ion-icon name="person-circle-outline" class="absolute right-0 top-0 pt-2 pr-3 text-3xl text-white pointer-events-none"></ion-icon>
+                    </div>
+                    <div class="relative">
+                        <input type="email" id="email" name="email" required 
+                            class="block w-full p-3 pl-3 pr-12 bg-background text-white border border-gray-600 rounded-lg shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-200 ease-in-out" 
+                            placeholder="Ingrese e-mail">
+                        <ion-icon name="mail-outline" class="absolute right-0 top-0 pt-2 pr-3 text-3xl text-white pointer-events-none"></ion-icon>
+                    </div>
+                    <div class="relative">
+                        <input type="password" id="password" name="password" required 
+                            class="block w-full p-3 pl-3 pr-12 bg-background text-white border border-gray-600 rounded-lg shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-200 ease-in-out" 
+                            placeholder="Ingrese contraseña">
+                        <ion-icon name="eye-outline" class="absolute right-0 top-0 pt-2 pr-3 text-3xl text-white pointer-events-none"></ion-icon>
+                    </div>
+                    <div class="relative">
+                        <input type="password" id="confirmPassword" name="confirmPassword" required 
+                            class="block w-full p-3 pl-3 pr-12 bg-background text-white border border-gray-600 rounded-lg shadow-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm transition duration-200 ease-in-out" 
+                            placeholder="Repetir contraseña">
+                        <ion-icon name="eye-outline" class="absolute right-0 top-0 pt-2 pr-3 text-3xl text-white pointer-events-none"></ion-icon>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="w-full sm:w-full text-white py-2 px-4 rounded-md shadow-sm bg-gradient-to-r from-blue-700 via-indigo-600 to-purple-600 transition duration-400 ease-in-out hover:from-blue-800 hover:via-indigo-700 hover:to-purple-700 active:scale-90">
+                Actualizar
+            </button>
+
+        </form>
+    </div>
+</div>
+
+<div id="toast" class="fixed bottom-4 right-4 z-50 bg-white text-black p-4 rounded-lg shadow-lg transition-transform transform translate-y-10 opacity-0 duration-300 ease-in-out flex items-center gap-4">
+    <div id="toast-icon" class="text-2xl"></div>
+    <p id="toast-message" class="font-medium"></p>
+</div>
+
+<script>
+    const defaultFile = 'https://i.pinimg.com/474x/31/ec/2c/31ec2ce212492e600b8de27f38846ed7.jpg';
+    const fileInput = document.getElementById('foto');
+    const img = document.getElementById('profileImage');
+    const uploadButton = document.getElementById('uploadButton');
+
+    // Trigger file input click when button is clicked
+    uploadButton.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    // Handle file input change event to update the profile image
+    fileInput.addEventListener('change', e => {
+        if (e.target.files[0]) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                img.src = e.target.result;
+            };
+
+            reader.readAsDataURL(e.target.files[0]);
+        } else {
+            img.src = defaultFile;
+        }
+    });
+</script>
